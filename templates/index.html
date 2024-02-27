@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Python QR code generator"/>
+    <meta property="og:description" content="Generate and download QR code for text"/>
+  <meta name="description" content="Generate and download QR code for texts.">
+    <meta property="og:image" content="image.jpg"/>
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 80%;
+        }
+        h1 {
+            color: #333;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+        #qrCodeForm {
+            margin-bottom: 30px;
+        }
+        #qrCodeText {
+            padding: 10px;
+            font-size: 16px;
+            width: 100%;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        #qrCodeForm button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #qrCodeForm button:hover {
+            background-color: #45a049;
+        }
+        #qrCodeImage {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>QR Code Generator</h1>
+        <form id="qrCodeForm">
+            <input type="text" id="qrCodeText" placeholder="Enter text to generate QR code">
+            <button type="submit">Generate QR Code</button>
+        </form>
+        <div id="qrCodeImage_display">
+            <img src="" alt="QR Code Image" id="qrCodeImage">
+        </div>
+    </div>
+
+    <script>
+        const theForm = document.getElementById("qrCodeForm");
+        const theText = document.getElementById("qrCodeText");
+        const theImage = document.getElementById("qrCodeImage")
+        theForm.addEventListener("submit", function(event){
+            event.preventDefault();
+            const theTextValue = theText.value;
+            const theURL = `/generate_qr_code?text=${theTextValue}`;
+            theImage.src = theURL;
+        })
+    </script>
+</body>
+</html>
